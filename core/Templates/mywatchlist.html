@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_filters %}
+{% block title %}
+My WatchList
+{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 style=" 
+            color: rgba(255, 0, 0, 1);
+            font-family: Skranji;
+            font-weight: Regular;
+            font-size: 82px;
+           ">My</h1>
+           <h1 style=" 
+           color: rgb(0, 0, 0);
+           font-family: Skranji;
+           font-weight: Regular;
+           font-size: 82px;
+          ">WatchList<img src="{% static 'audience.png' %}"></h1>
+       
+        </div>
+        <div class="col-md-12">
+            {% for list in lists %}
+            <div class="todo-content border border-dark p-2 mb-2 d-flex justify-content-between">
+                <div>
+                    <span class="lead">{{list.title}}</span>
+                </div>
+                <div>
+                    <a href="{% url 'update' list.id %}" class="btn btn-dark">Update</a>
+                    <form action="{% url 'delete' list.id %}" method="POST" class="d-inline-block">
+                        {% csrf_token %}
+                        <input type="submit" class="btn btn-danger" value="Delete"/>
+                    </form>
+                </div>
+            </div>
+            {% endfor %}
+            <a href="{% url 'home' %}" class="btn btn-secondary btn-lg btn-block btn-success btn-outline-light">Add Movie</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

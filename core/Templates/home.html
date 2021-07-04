@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_filters %}
+{% block title %}
+Movie WatchList
+{% endblock %}
+{% block content %}
+<section id="list">
+    <div class="container" style="padding-top: 10%;" >
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="text-center display-4"  style=" 
+                width: 1090px;
+                color: rgb(255, 0, 0);
+                font-family: Skranji;
+                font-weight: Regular;
+                font-size: 84px;
+            ">Movie<img src="{% static 'popcorn.png' %}"></h1>
+            <h1 class="text-center display-4" style=" 
+            width: 1090px;
+            color: rgba(0,0,0,1);
+            font-family: Skranji;
+            font-weight: Regular;
+            font-size: 104px;
+        ">WatchList</h1>
+            </div>
+            <div class="col-md-12" >
+                <form method="POST" novalidate>
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <div style="text-align: center;">
+                    <input type="submit" class="btn btn-light btn-lg btn-outline-dark" value="Submit" />
+                    <a href="{% url 'mywatchlist' %}" class="btn btn-light btn-lg btn-outline-dark" >View My WatchList</a>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-12 mt-3">
+                <div class="todos-list text-center">
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+{% endblock%}
+
